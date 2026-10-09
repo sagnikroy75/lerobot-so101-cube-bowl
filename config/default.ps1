@@ -1,0 +1,36 @@
+# Shared configuration for the SO-101 cube-to-bowl pipeline (PowerShell).
+# Do not put secrets in here. Copy to config\local.ps1 (git-ignored) and edit.
+
+# --- Hugging Face / Weights & Biases ---
+$HF_USER        = "sagnikroy75"
+$DATASET_NAME   = "so101_cube_bowl"      # edit: your dataset repo name on the Hub
+$POLICY_NAME    = "act_so101_cube_bowl"  # edit: your policy repo name on the Hub
+$WANDB_PROJECT  = "lerobot"
+
+# --- Hardware (find ports with `lerobot-find-port`) ---
+$FOLLOWER_PORT  = "COM3"                 # edit
+$FOLLOWER_ID    = "my_follower_arm"      # edit: must match the ID used at calibration
+$LEADER_PORT    = "COM4"                 # edit
+$LEADER_ID      = "my_leader_arm"        # edit: must match the ID used at calibration
+
+# --- Cameras (find indices with `lerobot-find-cameras`) ---
+# The keys must match the dataset features observation.images.top and observation.images.wrist.left.
+# Set the camera type, indices (or serial numbers) and rotation to match your hardware; the dataset
+# stores `top` as 640 wide x 480 high and `wrist.left` as 480 wide x 640 high.
+# Keys, count and frame shapes must be identical at record time, train time and eval time.
+$CAMERA_CONFIG  = '{ top: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30}, wrist.left: {type: opencv, index_or_path: 0, width: 480, height: 640, fps: 30} }'
+
+# --- Task / recording ---
+$TASK              = "Pick up the cube and place it in the bowl"
+$NUM_EPISODES      = "30"
+$RESET_TIME_S      = "20"
+$EXTRA_RECORD_ARGS = ""                  # e.g. "--dataset.streaming_encoding=true" (newer LeRobot only)
+
+# --- Training (values from the W&B run) ---
+$TRAIN_STEPS      = "1800"
+$EXTRA_TRAIN_ARGS = "--batch_size=224"
+
+# --- Evaluation ---
+$POLICY_PATH      = ""                   # empty = $HF_USER/$POLICY_NAME; or a local checkpoint path
+$EVAL_TRIALS      = "5"
+$EVAL_DURATION_S  = "60"

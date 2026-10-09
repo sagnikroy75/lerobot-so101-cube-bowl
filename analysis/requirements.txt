@@ -1,0 +1,6 @@
+# Only needed for the analysis scripts.
+numpy
+pandas
+pyarrow
+matplotlib
+huggingface_hub

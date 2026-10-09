@@ -1,0 +1,19 @@
+# LeRobot / training artefacts
+outputs/
+wandb/
+*.safetensors
+*.pt
+*.pth
+# Local overrides and secrets (never commit tokens)
+config/local.env
+config/local.ps1
+.env
+*.token
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+# Raw recordings (the dataset lives on the Hugging Face Hub)
+*.mp4
+!assets/*.mp4
