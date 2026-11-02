@@ -133,7 +133,6 @@ The cameras' names, count and frame shapes must be identical in recording and ev
 - Created the dataset and uploaded it to the Hugging Face Hub.
 - Trained an ACT policy on it with LeRobot and monitored training in Weights & Biases.
 - Evaluated the policy on the physical robot: 5/5 successful autonomous trials, 9.92 s average completion time (best 9.34 s).
-- Wrote this repository after the workshop: configuration-driven wrapper scripts, trial logging, analysis scripts, dataset card and documentation.
 
 
 
